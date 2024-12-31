@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Botón Flotante - WhatsApp</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        /* Botón flotante */
+        .floating-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background: #25d366;
+            border: none;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            z-index: 1000;
+        }
+
+        .floating-button img {
+            width: 30px;
+            height: 30px;
+        }
+
+        /* Formulario flotante */
+        .floating-form {
+            position: fixed;
+            bottom: 100px;
+            right: 20px;
+            width: 300px;
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            display: none;
+            z-index: 999;
+        }
+
+        .floating-form h4 {
+            margin: 0 0 10px;
+            font-size: 18px;
+            color: #333;
+        }
+
+        .floating-form label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 14px;
+            color: #555;
+        }
+
+        .floating-form input,
+        .floating-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        .floating-form button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: 10px;
+            background: #25d366;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .floating-form button img {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <button class="floating-button" id="toggleForm">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+    </button>
+
+    <div class="floating-form" id="contactForm">
+        <h4>Cotiza Ahora</h4>
+        <p>Quiero contactar a un asesor</p>
+        <form>
+            <label for="name">Nombre:</label>
+            <input type="text" id="name" name="name" placeholder="Ingresa tu nombre" required>
+
+            <label for="description">Descripción:</label>
+            <textarea id="description" name="description" rows="3" placeholder="Describe tu consulta" required></textarea>
+
+            <button type="button" id="sendMessage">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp"> Enviar
+            </button>
+        </form>
+    </div>
+
+    <script>
+        const toggleButton = document.getElementById('toggleForm');
+        const form = document.getElementById('contactForm');
+
+        toggleButton.addEventListener('click', () => {
+            form.style.display = form.style.display === 'none' || form.style.display === '' ? 'block' : 'none';
+        });
+
+        document.getElementById('sendMessage').addEventListener('click', function () {
+            const name = document.getElementById('name').value;
+            const description = document.getElementById('description').value;
+
+            if (name && description) {
+                const message = `Hola, mi nombre es ${encodeURIComponent(name)}. Estoy interesado en: ${encodeURIComponent(description)}.`;
+                const phone = '51999999999'; // Cambiar por el número de WhatsApp del asesor (con código de país).
+                const url = `https://api.whatsapp.com/send?phone=${phone}&text=${message}`;
+                window.open(url, '_blank');
+            } else {
+                alert('Por favor, completa todos los campos antes de enviar el mensaje.');
+            }
+        });
+    </script>
+</body>
+</html>

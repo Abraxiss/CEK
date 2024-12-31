@@ -1,0 +1,208 @@
+<style type="text/css">
+/*  1. Estilos Generales 
+Establecemos las fuentes, colores básicos y márgenes globales:
+css
+Copiar código */ 
+body {
+    font-family: 'Poppins', sans-serif;
+    color: #444;
+    background-color: #fff;
+    margin: 0;
+    padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #333;
+    margin: 0;
+    padding: 10px 0;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    color: #ff6e42; /* Paleta original */
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+.section {
+    padding: 50px 0;
+}
+/*  2. Barra de Navegación (Navbar)
+Diseñamos la barra de menú con un fondo anaranjado y enlaces blancos:
+
+css
+Copiar código */ 
+nav {
+    background-color: #ff6e42; /* Paleta original */
+    color: white;
+    padding: 10px 0;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+    margin: 0 15px;
+}
+
+nav a:hover {
+    color: #fff;
+    text-decoration: underline;
+}
+/*  3. Sección Portada
+Incluye una imagen destacada y un mensaje principal superpuesto:
+
+css
+Copiar código/* */ 
+.portada {
+    position: relative;
+    text-align: center;
+}
+
+.portada img {
+    width: 100%;
+    height: auto;
+}
+
+.mensaje-principal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    border-radius: 10px;
+}
+/*  4. Publicaciones (Latest Articles)
+Diseñamos tarjetas para cada publicación:
+
+css
+Copiar código/* */ 
+.card {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card img {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.card-body {
+    padding: 20px;
+}
+/*  5. Nosotros
+Estilo para el texto central de la sección About:
+
+css
+Copiar código/* */ 
+#nosotros p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin: 0 auto;
+    max-width: 800px;
+}
+/* / 6. Footer
+Diseñamos un pie de página con fondo oscuro:
+
+css
+Copiar código/* */ 
+.footer {
+    background-color: #333; /* Fondo oscuro */
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+}
+
+.footer p {
+    margin: 5px 0;
+}
+
+.footer i {
+    margin: 0 5px;
+    font-size: 1.5rem;
+}
+/* * 7. Servicios
+Lista de servicios estilizada: 
+
+css
+Copiar código/* */ 
+#servicios ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+#servicios li {
+    font-size: 1.2rem;
+    margin: 10px 0;
+}
+/* * 8. Galería (Portfolio)
+Galería de imágenes con diseño responsivo:
+
+css
+Copiar código/* */ 
+.portfolio img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+    border-radius: 10px;
+}
+/* * 9. Formulario de Contacto
+Formulario centrado con campos estilizados:
+
+css
+Copiar código/* */ 
+form {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+form .form-control {
+    margin-bottom: 15px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+form button {
+    background-color: #ff6e42; /* Botón naranja */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+form button:hover {
+    background-color: #e8552c; /* Oscurecido */
+}
+/* * 10. Interactividad Adicional
+Botón para WhatsApp dentro de la sección de contacto:
+
+css
+Copiar código/* */ 
+.btn-whatsapp {
+    display: inline-block;
+    background-color: #25d366;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 1rem;
+}
+
+.btn-whatsapp:hover {
+    background-color: #20b354;
+}
+
+
+</style>
