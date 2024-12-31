@@ -51,6 +51,7 @@
             box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
             transition: transform 0.3s ease;
             position: relative;
+            cursor: pointer;
         }
 
         .gallery-item:hover {
@@ -89,9 +90,10 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(0, 0, 0, 0.8);
             align-items: center;
             justify-content: center;
+            z-index: 1000;
         }
 
         .modal.active {
@@ -99,49 +101,36 @@
         }
 
         .modal-content {
-            background: white;
-            padding: 2rem;
-            border-radius: 0.5rem;
-            width: 90%;
-            max-width: 500px;
+            max-width: 90%;
+            max-height: 90%;
         }
 
-        .form-group {
-            margin-bottom: 1rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-        }
-
-        .form-group input,
-        .form-group textarea {
+        .modal-content img {
             width: 100%;
-            padding: 0.5rem;
-            border: 1px solid #e2e8f0;
-            border-radius: 0.25rem;
+            height: auto;
+            border-radius: 0.5rem;
         }
 
-        .gallery-actions {
+        .close-modal {
             position: absolute;
-            top: 0.5rem;
-            right: 0.5rem;
-            display: flex;
-            gap: 0.5rem;
-        }
-
-        .gallery-actions button {
-            background: rgba(255, 255, 255, 0.8);
+            top: 1rem;
+            right: 1rem;
+            background: white;
+            color: var(--secondary);
             border: none;
-            padding: 0.25rem 0.5rem;
-            border-radius: 0.25rem;
+            font-size: 1.5rem;
+            border-radius: 50%;
+            width: 2.5rem;
+            height: 2.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             cursor: pointer;
-            font-size: 0.75rem;
+            z-index: 1001;
         }
 
-        .gallery-actions button:hover {
-            background: rgba(255, 255, 255, 1);
+        .close-modal:hover {
+            background: #f1f5f9;
         }
     </style>
 </head>
@@ -149,7 +138,6 @@
     <div class="container">
         <header class="header">
             <h1>Galería de Imágenes</h1>
-
         </header>
 
         <div class="gallery-grid" id="galleryGrid">
@@ -167,7 +155,12 @@ echo json_encode($result);
         </div>
     </div>
 
-
+    <div class="modal" id="imageModal">
+        <button class="close-modal" onclick="hideModal()">&times;</button>
+        <div class="modal-content">
+            <img id="modalImage" src="" alt="Imagen">
+        </div>
+    </div>
 
     <script>
         async function fetchGallery() {
@@ -187,32 +180,27 @@ echo json_encode($result);
                     <div class="gallery-content">
                         <p>${item.descripcion}</p>
                     </div>
-
                 `;
+                galleryItem.addEventListener('click', () => showModal(item.imagen_ruta));
                 galleryGrid.appendChild(galleryItem);
             });
         }
 
-        function showUploadModal() {
-            document.getElementById('uploadModal').classList.add('active');
+        function showModal(imageSrc) {
+            const modal = document.getElementById('imageModal');
+            const modalImage = document.getElementById('modalImage');
+            modalImage.src = imageSrc;
+            modal.classList.add('active');
         }
 
-        function hideUploadModal() {
-            document.getElementById('uploadModal').classList.remove('active');
-        }
-
-        async function deleteImage(id) {
-            const response = await fetch(`delete_image.php?id=${id}`, { method: 'DELETE' });
-            if (response.ok) fetchGallery();
+        function hideModal() {
+            const modal = document.getElementById('imageModal');
+            modal.classList.remove('active');
         }
 
         // Inicializa la galería al cargar la página
         fetchGallery();
     </script>
-
-
-
-
 
 
 <!-- End of  Section galeria-->

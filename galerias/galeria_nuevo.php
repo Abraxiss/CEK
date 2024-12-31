@@ -207,7 +207,6 @@ echo json_encode($result);
                         <p>${item.descripcion}</p>
                     </div>
                     <div class="gallery-actions">
-                        <button onclick="editImage(${item.id})">Editar</button>
                         <button onclick="deleteImage(${item.id})">Eliminar</button>
                     </div>
                 `;
@@ -224,8 +223,26 @@ echo json_encode($result);
         }
 
         async function deleteImage(id) {
-            const response = await fetch(`delete_image.php?id=${id}`, { method: 'DELETE' });
-            if (response.ok) fetchGallery();
+            if (confirm("¿Estás seguro de que deseas eliminar esta imagen?")) {
+                try {
+                    const response = await fetch('delete_image.php', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                        body: `id=${id}`
+                    });
+
+                    if (response.ok) {
+                        alert("Imagen eliminada correctamente.");
+                        fetchGallery(); // Recargar la galería
+                    } else {
+                        const error = await response.json();
+                        alert(`Error: ${error.message}`);
+                    }
+                } catch (error) {
+                    console.error("Error eliminando la imagen:", error);
+                    alert("Hubo un problema al intentar eliminar la imagen.");
+                }
+            }
         }
 
         // Inicializa la galería al cargar la página
