@@ -11229,7 +11229,7 @@ textarea.form-control {
 }
 
 .navbar.custom-navbar .nav-link:hover {
-  color: #fff;
+  color: #000;
 }
 
 .navbar.custom-navbar.affix {
@@ -11240,7 +11240,7 @@ textarea.form-control {
 }
 
 .navbar.custom-navbar.affix .nav-link {
-  color: #fff;
+  color: #000;
 }
 
 .navbar.custom-navbar.affix .nav-link:hover {
